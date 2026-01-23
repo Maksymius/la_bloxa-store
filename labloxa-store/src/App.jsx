@@ -44,11 +44,11 @@ const Navigation = ({ activeTab, setActiveTab }) => {
       {/* Корзина */}
       <button
         onClick={() => setIsCartOpen(true)}
-        className="flex items-center gap-3 border border-[#D4AF37]/30 px-6 py-2 rounded-sm hover:bg-[#D4AF37] hover:text-black transition-all duration-700 group"
+        className="flex items-center gap-2 md:gap-3 border border-[#D4AF37]/30 px-3 md:px-6 py-2 rounded-sm hover:bg-[#D4AF37] hover:text-black transition-all duration-700 group"
       >
-        <span className="font-mono text-[9px] uppercase tracking-widest">Panier</span>
-        <ShoppingBag size={12} className="group-hover:fill-black" />
-        <span className="font-mono text-[9px]">({cartItems.length})</span>
+        <span className="hidden md:inline font-mono text-[9px] uppercase tracking-widest">Panier</span>
+        <ShoppingBag size={16} className="md:w-3 md:h-3 group-hover:fill-black" />
+        <span className="font-mono text-[10px]">({cartItems.length})</span>
       </button>
     </nav>
   )
@@ -59,33 +59,8 @@ function App() {
   const [selectedLot, setSelectedLot] = useState(null)
 
   useEffect(() => {
-    // Detect Safari
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    if (isSafari) {
-      // Safari has good native smooth scroll, Lenis causes jitter
-      document.documentElement.style.scrollBehavior = 'smooth';
-      window.scrollTo(0, 0);
-      return;
-    }
-
-    // 1. Ініціалізація плавного скролу (Lenis) - only for non-Safari
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => 1 - Math.pow(1 - t, 3),
-      smooth: true,
-      touchMultiplier: 2,
-    })
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-
-    // Scroll to top on tab change
-    window.scrollTo(0, 0);
+    // Simple scroll to top on tab change - uses CSS scroll-behavior: smooth
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab])
 
   return (
