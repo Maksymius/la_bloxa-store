@@ -18,7 +18,7 @@ const Navigation = ({ activeTab, setActiveTab }) => {
     <nav className="fixed top-0 w-full p-8 flex justify-between items-center z-[60] mix-blend-difference text-[#E5E0D0]">
       {/* Логотип */}
       <div
-        className="font-royal text-xl tracking-[0.3em] uppercase cursor-pointer hover:text-[#D4AF37] transition-colors"
+        className="font-royal text-lg tracking-[0.2em] cursor-pointer hover:text-[#D4AF37] hover:tracking-[0.5em] transition-all duration-700 ease-out"
         onClick={() => setActiveTab('home')}
       >
         laBLOXA

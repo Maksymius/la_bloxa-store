@@ -38,8 +38,8 @@ export default function Home({ onGoToCatalog }) {
                                 de Curiosités
                             </span>
                         </h1>
-                        <p className="font-mono text-xs md:text-sm text-zinc-300 max-w-md mx-auto leading-relaxed mt-12 border-l border-[#D4AF37] pl-6 text-left">
-                            Здесь вещи обретают душу, а время — свою истинную цену. <br />
+                        <p className="font-mono text-xs md:text-[14px] text-zinc-300 max-w-md mx-auto leading-relaxed mt-12 border-l border-[#D4AF37] pl-6 text-left">
+                            Здесь вещи обретают душу,<br /> а время — свою истинную цену. <br />
                             Добро пожаловать в цифровой будуар.
                         </p>
                     </motion.div>
