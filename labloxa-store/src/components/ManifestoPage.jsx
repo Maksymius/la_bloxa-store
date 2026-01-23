@@ -142,7 +142,7 @@ export default function ManifestoPage() {
                             </div>
                             <div className="flex gap-4">
                                 <span className="text-[#D4AF37]">03_ПРОДАЖА (Conversion):</span>
-                                <span className="text-zinc-400">Сайт без барьеров -> Оплата картой или бронь в личку для VIP.</span>
+                                <span className="text-zinc-400">Сайт без барьеров → Оплата картой или бронь в личку для VIP.</span>
                             </div>
                         </div>
                         <div className="relative h-32 border-l border-b border-[#D4AF37]/30 flex items-center justify-center">
