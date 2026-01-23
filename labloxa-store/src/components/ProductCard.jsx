@@ -2,7 +2,7 @@
 const ProductCard = ({ item, onClick }) => (
     <div
         onClick={() => onClick(item)}
-        className="group relative border-r border-b border-[#D4AF37]/20 bg-[#050505] hover:bg-[#0a0a0a] transition-colors aspect-[3/4] flex flex-col justify-between p-6 cursor-pointer">
+        className="group relative border-r border-b border-[#D4AF37]/20 bg-[#050505] hover:bg-[#0a0a0a] transition-colors aspect-[3/4] flex flex-col justify-between p-4 md:p-6 cursor-pointer">
 
         {/* Image Container */}
         <div className="relative flex-1 overflow-hidden mb-6">
@@ -24,7 +24,7 @@ const ProductCard = ({ item, onClick }) => (
                 <span className="font-mono text-[9px] text-zinc-500 uppercase tracking-widest">Lot #{item.id}</span>
                 <span className="font-mono text-[9px] text-zinc-500 uppercase">{item.year}</span>
             </div>
-            <h3 className="font-baroque text-2xl italic leading-none mb-2 group-hover:text-[#D4AF37] transition-colors">
+            <h3 className="font-baroque italic leading-none mb-2 group-hover:text-[#D4AF37] transition-colors" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
                 {item.title}
             </h3>
             <p className="font-mono text-[10px] text-zinc-400 line-clamp-2">

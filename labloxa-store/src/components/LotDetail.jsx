@@ -21,8 +21,9 @@ const LotDetail = ({ lot, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-[#050505]/98 backdrop-blur-md flex items-center justify-center p-4 md:p-8 overflow-hidden"
+            className="fixed inset-0 z-[200] bg-[#000000]/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8 overflow-hidden"
             onClick={onClose}
+            style={{ WebkitBackdropFilter: 'blur(20px)' }} // Safari-specific stronger blur
         >
             {/* Background Frame (Internal) */}
             <div className="absolute inset-4 md:inset-8 border border-[#D4AF37]/20 pointer-events-none" />

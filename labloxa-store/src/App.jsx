@@ -60,10 +60,20 @@ function App() {
   const [selectedLot, setSelectedLot] = useState(null)
 
   useEffect(() => {
-    // 1. Ініціалізація плавного скролу (Lenis) - simplified for Safari
+    // Detect Safari
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (isSafari) {
+      // Safari has good native smooth scroll, Lenis causes jitter
+      document.documentElement.style.scrollBehavior = 'smooth';
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    // 1. Ініціалізація плавного скролу (Lenis) - only for non-Safari
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => 1 - Math.pow(1 - t, 3), // Simpler cubic easing for Safari
+      easing: (t) => 1 - Math.pow(1 - t, 3),
       smooth: true,
       touchMultiplier: 2,
     })
