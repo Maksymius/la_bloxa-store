@@ -28,16 +28,16 @@ const LotDetail = ({ lot, onClose }) => {
             <div className="absolute inset-4 md:inset-8 border border-[#D4AF37]/20 pointer-events-none" />
 
             {/* Close Button Container - Ensuring it stays on top and is clickable */}
-            <div className="absolute top-10 right-10 md:top-20 md:right-20 z-[210]">
+            <div className="absolute top-4 right-4 md:top-20 md:right-20 z-[210]">
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
                         onClose();
                     }}
-                    className="p-4 text-[#D4AF37] hover:rotate-90 transition-transform duration-500 cursor-pointer bg-void/50 rounded-full backdrop-blur-sm"
+                    className="p-3 md:p-4 text-[#D4AF37] hover:rotate-90 transition-transform duration-500 cursor-pointer bg-black/50 rounded-full backdrop-blur-sm"
                     aria-label="Close detail view"
                 >
-                    <X size={40} strokeWidth={1} />
+                    <X size={32} className="md:w-10 md:h-10" strokeWidth={1} />
                 </button>
             </div>
 

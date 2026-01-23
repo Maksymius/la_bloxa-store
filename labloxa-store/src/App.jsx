@@ -15,10 +15,10 @@ import CartDrawer from './components/CartDrawer'
 const Navigation = ({ activeTab, setActiveTab }) => {
   const { cartItems, setIsCartOpen } = useCart();
   return (
-    <nav className="fixed top-0 w-full p-8 flex justify-between items-center z-[60] mix-blend-difference text-[#E5E0D0]">
+    <nav className="fixed top-0 w-full p-4 md:p-8 flex justify-between items-center z-[100] bg-[#050505]/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none md:mix-blend-difference text-[#E5E0D0]">
       {/* Логотип */}
       <div
-        className="font-royal text-lg tracking-[0.2em] cursor-pointer hover:text-[#D4AF37] hover:tracking-[0.5em] transition-all duration-700 ease-out"
+        className="font-royal text-base md:text-lg tracking-[0.2em] cursor-pointer hover:text-[#D4AF37] hover:tracking-[0.5em] transition-all duration-700 ease-out"
         onClick={() => setActiveTab('home')}
       >
         laBLOXA
@@ -43,7 +43,6 @@ const Navigation = ({ activeTab, setActiveTab }) => {
       </div>
 
       {/* Корзина */}
-      {/* Корзина */}
       <button
         onClick={() => setIsCartOpen(true)}
         className="flex items-center gap-3 border border-[#D4AF37]/30 px-6 py-2 rounded-sm hover:bg-[#D4AF37] hover:text-black transition-all duration-700 group"
@@ -61,11 +60,12 @@ function App() {
   const [selectedLot, setSelectedLot] = useState(null)
 
   useEffect(() => {
-    // 1. Ініціалізація плавного скролу (Lenis)
+    // 1. Ініціалізація плавного скролу (Lenis) - simplified for Safari
     const lenis = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 1.2,
+      easing: (t) => 1 - Math.pow(1 - t, 3), // Simpler cubic easing for Safari
       smooth: true,
+      touchMultiplier: 2,
     })
 
     function raf(time) {
