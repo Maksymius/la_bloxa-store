@@ -7,12 +7,17 @@
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        /* Mobile viewport height that accounts for address bar */
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
     }
 
     body {
         @apply bg-[#050505] text-[#E5E0D0] overflow-x-hidden;
         cursor: crosshair;
         /* Курсор-хрестик для точності */
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
     }
 
     ::selection {
