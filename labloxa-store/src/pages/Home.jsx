@@ -18,10 +18,9 @@ export default function Home({ onGoToCatalog }) {
                 {/* HERO SECTION */}
                 <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
 
-                    {/* ФОТО ХАЗЯЙКИ (Абсолютний центр) */}
                     <div className="absolute inset-0 z-0">
                         <img
-                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2864&auto=format&fit=crop"
+                            src="/madame-vintage.jpg"
                             alt="Madame"
                             className="w-full h-full object-cover opacity-60 grayscale contrast-125 hover:grayscale-0 transition-all duration-[2s]"
                         />
@@ -31,7 +30,7 @@ export default function Home({ onGoToCatalog }) {
                     {/* ТИПОГРАФІЯ (Поверх фото) */}
                     <motion.div style={{ y: yText }} className="relative z-10 text-center mix-blend-difference px-6">
                         <p className="font-mono text-xs text-[#D4AF37] uppercase tracking-[0.5em] mb-6">
-                            Est. 1789 // Kyiv
+                            Est. 1789 // Moscow
                         </p>
                         <h1 className="font-baroque italic text-7xl md:text-9xl text-white leading-[0.8] mb-8">
                             Le Cabinet <br />
@@ -40,8 +39,8 @@ export default function Home({ onGoToCatalog }) {
                             </span>
                         </h1>
                         <p className="font-mono text-xs md:text-sm text-zinc-300 max-w-md mx-auto leading-relaxed mt-12 border-l border-[#D4AF37] pl-6 text-left">
-                            Тут речі мають душу, а час має ціну. <br />
-                            Ласкаво просимо до цифрового будуару.
+                            Здесь вещи обретают душу, а время — свою истинную цену. <br />
+                            Добро пожаловать в цифровой будуар.
                         </p>
                     </motion.div>
 
@@ -58,16 +57,16 @@ export default function Home({ onGoToCatalog }) {
                         <div>
                             <h2 className="font-baroque text-5xl mb-8">Мадам <br /><span className="text-[#D4AF37] italic">laBLOXA</span></h2>
                             <p className="font-mono text-sm text-zinc-400 leading-loose mb-6">
-                                Я не продаю "б/у". Я продаю артефакти.
-                                Кожен предмет у цій колекції був врятований від забуття,
-                                відчищений від пилу століть і тепер шукає нового власника,
-                                який здатен оцінити його мовчазну велич.
+                                Я не продаю "б/у". Я предлагаю артефакты.
+                                Каждый предмет в этой коллекции был спасен от забвения,
+                                очищен от пыли столетий и теперь ищет нового владельца,
+                                способного оценить его молчаливое величие.
                             </p>
                             <button
                                 onClick={onGoToCatalog}
                                 className="px-8 py-4 border border-[#D4AF37] text-[#D4AF37] font-mono text-xs uppercase tracking-[0.2em] hover:bg-[#D4AF37] hover:text-black transition-all duration-500"
                             >
-                                Відкрити Каталог
+                                Открыть Каталог
                             </button>
                         </div>
                         <div className="relative h-[500px] border border-zinc-800 p-4 rotate-3 hover:rotate-0 transition-transform duration-700">

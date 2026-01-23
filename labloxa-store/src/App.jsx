@@ -86,7 +86,7 @@ function App() {
       <footer className="py-24 text-center border-t border-[#D4AF37]/10 mt-20 relative z-20 bg-[#050505]">
         <p className="font-baroque italic text-3xl text-[#D4AF37] mb-4">Merci de votre visite</p>
         <p className="font-royal text-[10px] text-[#E5E0D0]/30 uppercase tracking-[0.5em]">
-          Est. 1789 • Digital Boudoir • Paris — Kyiv — Le Web
+          Est. 1789 • Digital Boudoir • Paris — Moscow — Le Web
         </p>
       </footer>
     </div>

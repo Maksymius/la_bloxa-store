@@ -114,7 +114,7 @@ export default function Home() {
           {/* ТИПОГРАФІЯ (Поверх фото) */}
           <motion.div style={{ y: yText }} className="relative z-10 text-center mix-blend-difference px-6">
             <p className="font-mono text-xs text-[#D4AF37] uppercase tracking-[0.5em] mb-6">
-              Est. 1789 // Kyiv
+              Est. 1789 // Moscow
             </p>
             <h1 className="font-baroque italic text-7xl md:text-9xl text-white leading-[0.8] mb-8">
               Le Cabinet <br/>
