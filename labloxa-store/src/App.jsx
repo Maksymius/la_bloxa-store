@@ -1,19 +1,18 @@
-// src/App.jsx
 import { useState, useEffect } from 'react'
-import { ShoppingBag } from 'lucide-react'
+import { ShoppingBag, Menu, X } from 'lucide-react'
 
 // Import Components
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
 import LotDetail from './components/LotDetail'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { CartProvider, useCart } from './context/CartContext'
 import CartDrawer from './components/CartDrawer'
 import BriefPage from './components/BriefPage' // <-- Добавили импорт
 import ManifestoPage from './components/ManifestoPage' // <-- Добавили Манифест
 
 // --- NAVIGATION COMPONENT ---
-const Navigation = ({ activeTab, setActiveTab }) => {
+const Navigation = ({ activeTab, setActiveTab, setIsMenuOpen }) => {
   const { cartItems, setIsCartOpen } = useCart();
   return (
     <nav className="fixed top-0 w-full p-4 md:p-8 flex justify-between items-center z-[100] bg-[#050505]/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none md:mix-blend-difference text-[#E5E0D0]">
@@ -25,7 +24,7 @@ const Navigation = ({ activeTab, setActiveTab }) => {
         laBLOXA
       </div>
 
-      {/* Меню (Центр) */}
+      {/* Меню (Центр - Desktop) */}
       <div className="hidden md:flex gap-12 font-mono text-[10px] uppercase tracking-[0.4em]">
         <button
           onClick={() => setActiveTab('home')}
@@ -50,22 +49,99 @@ const Navigation = ({ activeTab, setActiveTab }) => {
         </button>
       </div>
 
-      {/* Корзина */}
-      <button
-        onClick={() => setIsCartOpen(true)}
-        className="flex items-center gap-2 md:gap-3 border border-[#D4AF37]/30 px-3 md:px-6 py-2 rounded-sm hover:bg-[#D4AF37] hover:text-black transition-all duration-700 group"
-      >
-        <span className="hidden md:inline font-mono text-[9px] uppercase tracking-widest">Panier</span>
-        <ShoppingBag size={16} className="md:w-3 md:h-3 group-hover:fill-black" />
-        <span className="font-mono text-[10px]">({cartItems.length})</span>
-      </button>
+      {/* Правая часть: Корзина + Бургер */}
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => setIsCartOpen(true)}
+          className="flex items-center gap-2 md:gap-3 border border-[#D4AF37]/30 px-3 md:px-6 py-2 rounded-sm hover:bg-[#D4AF37] hover:text-black transition-all duration-700 group"
+        >
+          <span className="hidden md:inline font-mono text-[9px] uppercase tracking-widest">Panier</span>
+          <ShoppingBag size={16} className="md:w-3 md:h-3 group-hover:fill-black" />
+          <span className="font-mono text-[10px]">({cartItems.length})</span>
+        </button>
+
+        {/* Бургер иконка (MOBILE ONLY) */}
+        <button
+          onClick={() => setIsMenuOpen(true)}
+          className="md:hidden text-[#D4AF37] p-2"
+        >
+          <Menu size={24} />
+        </button>
+      </div>
     </nav>
   )
 }
 
+// --- MOBILE MENU OVERLAY ---
+const MobileMenu = ({ isOpen, onClose, activeTab, setActiveTab }) => {
+  const menuItems = [
+    { id: 'home', label: 'Madame', ru: 'Главная' },
+    { id: 'catalog', label: 'Archive', ru: 'Коллекция' },
+    { id: 'brief', label: 'Brief', ru: 'План работы' },
+    { id: 'manifesto', label: 'Manifesto', ru: 'Стратегия' },
+  ];
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, x: '100%' }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: '100%' }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed inset-0 z-[200] bg-[#050505] flex flex-col p-8 pt-24"
+        >
+          {/* Close Button */}
+          <button
+            onClick={onClose}
+            className="absolute top-6 right-6 text-[#D4AF37] p-2"
+          >
+            <X size={32} />
+          </button>
+
+          {/* Navigation Links */}
+          <div className="flex flex-col gap-10 mt-12">
+            {menuItems.map((item, index) => (
+              <motion.button
+                key={item.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + index * 0.1 }}
+                onClick={() => {
+                  setActiveTab(item.id);
+                  onClose();
+                }}
+                className="group flex flex-col items-start text-left"
+              >
+                <div className="flex items-baseline gap-4">
+                  <span className="font-mono text-[10px] text-[#D4AF37] opacity-40 italic">0{index + 1}</span>
+                  <span className={`font-royal text-4xl tracking-widest uppercase transition-colors ${activeTab === item.id ? 'text-[#D4AF37]' : 'text-[#E5E0D0] group-hover:text-[#D4AF37]'}`}>
+                    {item.label}
+                  </span>
+                </div>
+                <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#E5E0D0]/30 ml-10 mt-1">
+                  — {item.ru}
+                </span>
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Footer Info */}
+          <div className="mt-auto border-t border-[#D4AF37]/10 pt-8 pb-4">
+            <p className="font-mono text-[8px] uppercase tracking-[0.5em] text-[#D4AF37]/40">
+              Digital Boudoir // 2026
+            </p>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
 function App() {
   const [activeTab, setActiveTab] = useState('home') // 'home' | 'catalog'
   const [selectedLot, setSelectedLot] = useState(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     // Simple scroll to top on tab change - uses CSS scroll-behavior: smooth
@@ -94,8 +170,15 @@ function App() {
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
         </div>
 
-        <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
+        <Navigation activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
         <CartDrawer />
+
+        <MobileMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
 
         <main className="relative z-10">
           {activeTab === 'home' && <Home onGoToCatalog={() => setActiveTab('catalog')} />}
