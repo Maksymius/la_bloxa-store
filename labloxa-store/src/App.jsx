@@ -9,6 +9,8 @@ import LotDetail from './components/LotDetail'
 import { AnimatePresence } from 'framer-motion'
 import { CartProvider, useCart } from './context/CartContext'
 import CartDrawer from './components/CartDrawer'
+import BriefPage from './components/BriefPage' // <-- Добавили импорт
+import ManifestoPage from './components/ManifestoPage' // <-- Добавили Манифест
 
 // --- NAVIGATION COMPONENT ---
 const Navigation = ({ activeTab, setActiveTab }) => {
@@ -39,6 +41,13 @@ const Navigation = ({ activeTab, setActiveTab }) => {
           Archive
           {activeTab === 'catalog' && <span className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#D4AF37]" />}
         </button>
+        <button
+          onClick={() => setActiveTab('brief')}
+          className={`${activeTab === 'brief' ? 'text-[#D4AF37]' : 'text-[#E5E0D0]/60'} hover:text-[#D4AF37] transition-all relative group`}
+        >
+          Brief
+          {activeTab === 'brief' && <span className="absolute -bottom-2 left-0 w-full h-[1px] bg-[#D4AF37]" />}
+        </button>
       </div>
 
       {/* Корзина */}
@@ -63,6 +72,20 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab])
 
+  // Режим "Манифест" через URL хеш (#manifesto)
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '');
+      const validTabs = ['home', 'catalog', 'brief', 'manifesto'];
+      if (validTabs.includes(hash)) {
+        setActiveTab(hash);
+      }
+    };
+    window.addEventListener('hashchange', handleHash);
+    handleHash(); // Проверка при загрузке
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   return (
     <CartProvider>
       <div className="relative w-full min-h-screen bg-[#050505] selection:bg-[#D4AF37] selection:text-black text-[#E5E0D0] overflow-x-hidden">
@@ -81,6 +104,8 @@ function App() {
               onLotSelect={(lot) => setSelectedLot(lot)}
             />
           )}
+          {activeTab === 'brief' && <BriefPage />}
+          {activeTab === 'manifesto' && <ManifestoPage />}
         </main>
 
         <AnimatePresence>
