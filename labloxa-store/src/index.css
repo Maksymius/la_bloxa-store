@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
     body {
         @apply bg-[#050505] text-[#E5E0D0] overflow-x-hidden;
         cursor: crosshair;
