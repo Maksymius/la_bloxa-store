@@ -7,7 +7,7 @@ export default function Catalog({ onLotSelect }) {
     return (
         <GoldenFrame>
             <div className="pt-24 pb-12 px-6 border-b border-[#D4AF37]/20 relative z-10">
-                <h1 className="font-royal text-4xl text-center italic tracking-[0.2em] text-[#D4AF37]">Архив Экспонатов</h1>
+                <h1 className="font-baroque italic text-5xl text-center tracking-[0.05em] text-[#D4AF37]">Архив Экспонатов</h1>
             </div>
 
             {/* GRID: Схожа на таблицю Excel, але красива */}
