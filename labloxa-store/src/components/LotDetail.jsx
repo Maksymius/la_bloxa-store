@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, ShoppingBag } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 
 const LotDetail = ({ lot, onClose }) => {
+    const { addToCart } = useCart();
+
     useEffect(() => {
         const handleEsc = (e) => {
             if (e.key === 'Escape') onClose();
@@ -97,7 +100,10 @@ const LotDetail = ({ lot, onClose }) => {
                     </div>
 
                     <div className="pt-8">
-                        <button className="group w-full md:w-auto px-12 py-5 bg-[#D4AF37] text-black font-mono text-xs uppercase tracking-[0.2em] font-bold hover:bg-white transition-all duration-500 flex items-center justify-center gap-4">
+                        <button
+                            onClick={() => addToCart(lot)}
+                            className="group w-full md:w-auto px-12 py-5 bg-[#D4AF37] text-black font-mono text-xs uppercase tracking-[0.2em] font-bold hover:bg-white transition-all duration-500 flex items-center justify-center gap-4"
+                        >
                             Acquérir cet Objet <ShoppingBag size={14} />
                         </button>
                         <p className="mt-4 font-mono text-[9px] text-zinc-500 uppercase tracking-widest text-center md:text-left">
