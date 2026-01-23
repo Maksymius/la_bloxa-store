@@ -1,6 +1,5 @@
 // src/App.jsx
 import { useState, useEffect } from 'react'
-import Lenis from '@studio-freight/lenis'
 import { ShoppingBag } from 'lucide-react'
 
 // Import Components
