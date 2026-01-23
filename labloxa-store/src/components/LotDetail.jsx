@@ -1,8 +1,16 @@
-// src/components/LotDetail.jsx
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { X, ShoppingBag } from 'lucide-react';
 
 const LotDetail = ({ lot, onClose }) => {
+    useEffect(() => {
+        const handleEsc = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        window.addEventListener('keydown', handleEsc);
+        return () => window.removeEventListener('keydown', handleEsc);
+    }, [onClose]);
+
     if (!lot) return null;
 
     return (
@@ -10,19 +18,30 @@ const LotDetail = ({ lot, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#050505] flex items-center justify-center p-4 md:p-8"
+            className="fixed inset-0 z-[100] bg-[#050505]/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 overflow-hidden"
+            onClick={onClose}
         >
             {/* Background Frame (Internal) */}
             <div className="absolute inset-4 md:inset-8 border border-[#D4AF37]/20 pointer-events-none" />
 
-            <button
-                onClick={onClose}
-                className="absolute top-12 right-12 z-[110] text-[#D4AF37] hover:rotate-90 transition-transform duration-500"
-            >
-                <X size={32} strokeWidth={1} />
-            </button>
+            {/* Close Button Container - Ensuring it stays on top and is clickable */}
+            <div className="absolute top-6 right-6 md:top-12 md:right-12 z-[120]">
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onClose();
+                    }}
+                    className="p-2 text-[#D4AF37] hover:rotate-90 transition-transform duration-500 cursor-pointer"
+                    aria-label="Close detail view"
+                >
+                    <X size={32} strokeWidth={1} />
+                </button>
+            </div>
 
-            <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center overflow-y-auto max-h-[90vh] custom-scrollbar px-4">
+            <div
+                className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center overflow-y-auto max-h-[90vh] custom-scrollbar px-4 relative z-10"
+                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+            >
 
                 {/* Visual Partition */}
                 <motion.div
