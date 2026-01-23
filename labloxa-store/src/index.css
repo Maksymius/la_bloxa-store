@@ -2,8 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: #0B0B0B;
-    color: #F5F5DC;
-    cursor: none; /* Якщо будемо робити кастомний курсор */
+@layer base {
+    body {
+        @apply bg-[#050505] text-[#E5E0D0] overflow-x-hidden;
+        cursor: crosshair;
+        /* Курсор-хрестик для точності */
+    }
+
+    ::selection {
+        @apply bg-[#D4AF37] text-black;
+    }
+}
+
+.font-baroque {
+    font-family: 'Playfair Display', serif;
+}
+
+.font-royal {
+    font-family: 'Cinzel', serif;
+}
+
+@layer utilities {
+    .stroke-text {
+        -webkit-text-stroke: 1px #D4AF37;
+        /* Золота обводка */
+        color: transparent;
+    }
 }
