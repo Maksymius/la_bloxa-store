@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react'
 import Lenis from '@studio-freight/lenis'
 import { ShoppingBag } from 'lucide-react'
 
-// Import Pages
+// Import Components
 import Home from './pages/Home'
 import Catalog from './pages/Catalog'
+import LotDetail from './components/LotDetail'
+import { AnimatePresence } from 'framer-motion'
 
 // --- NAVIGATION COMPONENT ---
 const Navigation = ({ activeTab, setActiveTab }) => {
@@ -49,6 +51,7 @@ const Navigation = ({ activeTab, setActiveTab }) => {
 
 function App() {
   const [activeTab, setActiveTab] = useState('home') // 'home' | 'catalog'
+  const [selectedLot, setSelectedLot] = useState(null)
 
   useEffect(() => {
     // 1. Ініціалізація плавного скролу (Lenis)
@@ -80,8 +83,21 @@ function App() {
 
       <main className="relative z-10">
         {activeTab === 'home' && <Home onGoToCatalog={() => setActiveTab('catalog')} />}
-        {activeTab === 'catalog' && <Catalog />}
+        {activeTab === 'catalog' && (
+          <Catalog
+            onLotSelect={(lot) => setSelectedLot(lot)}
+          />
+        )}
       </main>
+
+      <AnimatePresence>
+        {selectedLot && (
+          <LotDetail
+            lot={selectedLot}
+            onClose={() => setSelectedLot(null)}
+          />
+        )}
+      </AnimatePresence>
 
       <footer className="py-24 text-center border-t border-[#D4AF37]/10 mt-20 relative z-20 bg-[#050505]">
         <p className="font-baroque italic text-3xl text-[#D4AF37] mb-4">Merci de votre visite</p>

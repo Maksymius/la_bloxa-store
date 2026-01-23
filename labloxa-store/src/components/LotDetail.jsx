@@ -18,23 +18,23 @@ const LotDetail = ({ lot, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-[#050505]/95 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 overflow-hidden"
+            className="fixed inset-0 z-[200] bg-[#050505]/98 backdrop-blur-md flex items-center justify-center p-4 md:p-8 overflow-hidden"
             onClick={onClose}
         >
             {/* Background Frame (Internal) */}
             <div className="absolute inset-4 md:inset-8 border border-[#D4AF37]/20 pointer-events-none" />
 
             {/* Close Button Container - Ensuring it stays on top and is clickable */}
-            <div className="absolute top-6 right-6 md:top-12 md:right-12 z-[120]">
+            <div className="absolute top-10 right-10 md:top-20 md:right-20 z-[210]">
                 <button
                     onClick={(e) => {
                         e.stopPropagation();
                         onClose();
                     }}
-                    className="p-2 text-[#D4AF37] hover:rotate-90 transition-transform duration-500 cursor-pointer"
+                    className="p-4 text-[#D4AF37] hover:rotate-90 transition-transform duration-500 cursor-pointer bg-void/50 rounded-full backdrop-blur-sm"
                     aria-label="Close detail view"
                 >
-                    <X size={32} strokeWidth={1} />
+                    <X size={40} strokeWidth={1} />
                 </button>
             </div>
 
