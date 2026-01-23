@@ -69,13 +69,13 @@ export default function Home({ onGoToCatalog }) {
                                 Открыть Каталог
                             </button>
                         </div>
-                        <div className="relative h-[400px] md:h-[500px] border border-zinc-800 p-3 md:p-4 rotate-2 md:rotate-3 hover:rotate-0 transition-transform duration-700 group overflow-hidden">
+                        <div className="relative h-[300px] md:h-[500px] border border-zinc-800 p-2 md:p-4 rotate-1 md:rotate-3 hover:rotate-0 transition-transform duration-700 group overflow-hidden">
                             <img
                                 src="/madame-vintage_v2.jpg"
                                 alt="Madame laBLOXA portrait"
                                 className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
                             />
-                            <div className="absolute inset-0 border border-[#D4AF37]/10 pointer-events-none m-6"></div>
+                            <div className="absolute inset-0 border border-[#D4AF37]/10 pointer-events-none m-3 md:m-6"></div>
                         </div>
                     </div>
                 </div>
