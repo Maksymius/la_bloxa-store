@@ -69,11 +69,13 @@ export default function Home({ onGoToCatalog }) {
                                 Открыть Каталог
                             </button>
                         </div>
-                        <div className="relative h-[500px] border border-zinc-800 p-4 rotate-3 hover:rotate-0 transition-transform duration-700">
-                            <div className="absolute inset-0 bg-stone-900/50 opacity-10"></div>
-                            <div className="w-full h-full border border-zinc-700 flex items-center justify-center">
-                                <span className="font-royal text-6xl opacity-20">L.B.</span>
-                            </div>
+                        <div className="relative h-[500px] border border-zinc-800 p-4 rotate-3 hover:rotate-0 transition-transform duration-700 group overflow-hidden">
+                            <img
+                                src="/madame-vintage_v2.jpg"
+                                alt="Madame laBLOXA portrait"
+                                className="w-full h-full object-cover grayscale contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                            />
+                            <div className="absolute inset-0 border border-[#D4AF37]/10 pointer-events-none m-6"></div>
                         </div>
                     </div>
                 </div>
