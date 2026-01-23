@@ -1,6 +1,8 @@
 // src/components/ProductCard.jsx
-const ProductCard = ({ item }) => (
-    <div className="group relative border-r border-b border-[#D4AF37]/20 bg-[#050505] hover:bg-[#0a0a0a] transition-colors aspect-[3/4] flex flex-col justify-between p-6 cursor-pointer">
+const ProductCard = ({ item, onClick }) => (
+    <div
+        onClick={() => onClick(item)}
+        className="group relative border-r border-b border-[#D4AF37]/20 bg-[#050505] hover:bg-[#0a0a0a] transition-colors aspect-[3/4] flex flex-col justify-between p-6 cursor-pointer">
 
         {/* Image Container */}
         <div className="relative flex-1 overflow-hidden mb-6">
