@@ -175,7 +175,7 @@ export default function MadameMemePage() {
 
                                         <div className="relative w-[80vw] max-w-[300px] h-[50vh] max-h-[400px] md:w-[400px] md:h-[550px] overflow-hidden">
                                             {/* Digital Scanline Overlay */}
-                                            <div className="absolute inset-0 z-30 bg-[url('/scanlines.png')] opacity-10 pointer-events-none mix-blend-overlay bg-repeat"></div>
+                                            <div className="absolute inset-0 z-30 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#000_3px)] opacity-20 pointer-events-none mix-blend-overlay"></div>
 
                                             {/* Portrait */}
                                             <motion.img
