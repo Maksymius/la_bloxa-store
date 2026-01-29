@@ -10,6 +10,7 @@ import { CartProvider, useCart } from './context/CartContext'
 import CartDrawer from './components/CartDrawer'
 import BriefPage from './components/BriefPage' // <-- Добавили импорт
 import ManifestoPage from './components/ManifestoPage' // <-- Добавили Манифест
+import MadameMeme from './pages/MadameMeme' // <-- Добавили Мем
 
 // --- NAVIGATION COMPONENT ---
 const Navigation = ({ activeTab, setActiveTab, setIsMenuOpen }) => {
@@ -131,6 +132,12 @@ const MobileMenu = ({ isOpen, onClose, activeTab, setActiveTab }) => {
             <p className="font-mono text-[8px] uppercase tracking-[0.5em] text-[#D4AF37]/40">
               Digital Boudoir // 2026
             </p>
+            <button
+              onClick={() => { setActiveTab('madame-meme'); onClose(); }}
+              className="mt-4 font-mono text-[7px] uppercase tracking-[0.3em] text-fuchsia-500/20 hover:text-fuchsia-500/60 transition-colors"
+            >
+              Protocol: MAJESTY
+            </button>
           </div>
         </motion.div>
       )}
@@ -152,7 +159,7 @@ function App() {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace('#', '');
-      const validTabs = ['home', 'catalog', 'brief', 'manifesto'];
+      const validTabs = ['home', 'catalog', 'brief', 'manifesto', 'madame-meme'];
       if (validTabs.includes(hash)) {
         setActiveTab(hash);
       }
@@ -170,7 +177,9 @@ function App() {
           style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
         </div>
 
-        <Navigation activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+        {activeTab !== 'madame-meme' && (
+          <Navigation activeTab={activeTab} setActiveTab={setActiveTab} setIsMenuOpen={setIsMenuOpen} />
+        )}
         <CartDrawer />
 
         <MobileMenu
@@ -189,6 +198,7 @@ function App() {
           )}
           {activeTab === 'brief' && <BriefPage />}
           {activeTab === 'manifesto' && <ManifestoPage />}
+          {activeTab === 'madame-meme' && <MadameMeme />}
         </main>
 
         <AnimatePresence>
@@ -200,12 +210,14 @@ function App() {
           )}
         </AnimatePresence>
 
-        <footer className="py-24 text-center border-t border-[#D4AF37]/10 mt-20 relative z-20 bg-[#050505]">
-          <p className="font-baroque italic text-3xl text-[#D4AF37] mb-4">Merci de votre visite</p>
-          <p className="font-royal text-[10px] text-[#E5E0D0]/30 uppercase tracking-[0.5em]">
-            Est. 1789 • Digital Boudoir • Paris — Moscow — Le Web
-          </p>
-        </footer>
+        {activeTab !== 'madame-meme' && (
+          <footer className="py-24 text-center border-t border-[#D4AF37]/10 mt-20 relative z-20 bg-[#050505]">
+            <p className="font-baroque italic text-3xl text-[#D4AF37] mb-4">Merci de votre visite</p>
+            <p className="font-royal text-[10px] text-[#E5E0D0]/30 uppercase tracking-[0.5em]">
+              Est. 1789 • Digital Boudoir • Paris — Moscow — Le Web
+            </p>
+          </footer>
+        )}
       </div>
     </CartProvider>
   )
