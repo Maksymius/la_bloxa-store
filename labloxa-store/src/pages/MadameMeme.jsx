@@ -173,7 +173,7 @@ export default function MadameMemePage() {
                                 <div className="relative p-1 md:p-[6px] bg-gradient-to-br from-[#D4AF37] via-[#3a1c5c] to-[#D4AF37] rounded-sm shadow-[0_0_60px_rgba(162,89,255,0.25)]">
                                     <div className="bg-[#050505] p-[2px] md:p-1 overflow-hidden relative rounded-sm">
 
-                                        <div className="relative w-[80vw] max-w-[300px] h-[50vh] max-h-[400px] md:w-[400px] md:h-[550px] overflow-hidden">
+                                        <div className="relative w-[85vw] max-w-[360px] h-[55vh] max-h-[480px] md:w-[480px] md:h-[660px] overflow-hidden">
                                             {/* Digital Scanline Overlay */}
                                             <div className="absolute inset-0 z-30 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#000_3px)] opacity-20 pointer-events-none mix-blend-overlay"></div>
 

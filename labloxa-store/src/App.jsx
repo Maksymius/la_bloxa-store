@@ -159,13 +159,30 @@ function App() {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.replace('#', '');
+
+      // Map of aliases to valid tabs
+      const aliasMap = {
+        'manifest': 'manifesto',
+        'meme': 'madame-meme',
+        'madame': 'madame-meme'
+      };
+
       const validTabs = ['home', 'catalog', 'brief', 'manifesto', 'madame-meme'];
-      if (validTabs.includes(hash)) {
-        setActiveTab(hash);
+
+      let targetTab = hash;
+      if (aliasMap[hash]) {
+        targetTab = aliasMap[hash];
+      }
+
+      if (validTabs.includes(targetTab)) {
+        setActiveTab(targetTab);
       }
     };
+
     window.addEventListener('hashchange', handleHash);
-    handleHash(); // Проверка при загрузке
+    // Slight delay to ensure router/browser state is ready on initial load
+    setTimeout(handleHash, 0);
+
     return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
