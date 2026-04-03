@@ -12,6 +12,7 @@ import BriefPage from './components/BriefPage' // <-- Добавили импо�
 import ManifestoPage from './components/ManifestoPage' // <-- Добавили Манифест
 import MadameMeme from './pages/MadameMeme' // <-- Добавили Мем
 import MandalaPage from './pages/MandalaPage' // <-- Добавили Мандалу
+import MandalaLuxuryPage from './pages/MandalaLuxuryPage' // <-- Добавили Мандалу Люкс
 
 // --- NAVIGATION COMPONENT ---
 const Navigation = ({ activeTab, setActiveTab, setIsMenuOpen }) => {
@@ -82,6 +83,7 @@ const MobileMenu = ({ isOpen, onClose, activeTab, setActiveTab }) => {
     { id: 'brief', label: 'Brief', ru: 'План работы' },
     { id: 'manifesto', label: 'Manifesto', ru: 'Стратегия' },
     { id: 'mandala', label: 'Mandala', ru: 'Мандала' },
+    { id: 'mandala-luxury', label: 'Mandala (Lux)', ru: 'Мандала Люкс' },
   ];
 
   return (
@@ -169,7 +171,7 @@ function App() {
         'madame': 'madame-meme'
       };
 
-      const validTabs = ['home', 'catalog', 'brief', 'manifesto', 'madame-meme', 'mandala'];
+      const validTabs = ['home', 'catalog', 'brief', 'manifesto', 'madame-meme', 'mandala', 'mandala-luxury'];
 
       let targetTab = hash;
       if (aliasMap[hash]) {
@@ -219,6 +221,7 @@ function App() {
           {activeTab === 'manifesto' && <ManifestoPage />}
           {activeTab === 'madame-meme' && <MadameMeme />}
           {activeTab === 'mandala' && <MandalaPage />}
+          {activeTab === 'mandala-luxury' && <MandalaLuxuryPage />}
         </main>
 
         <AnimatePresence>
